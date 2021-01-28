@@ -10,8 +10,11 @@ const SearchPage = () => {
         <div className="OuterContainer">
             <div className="InnerContainer">
             <h3>운송장 번호 조회</h3>
-                <SearchBar />
-                <History />
+                <SearchBar onAddKeyword/>
+                <div className="History">
+                    <History />
+                </div>
+                
             </div>
         </div>
     )
