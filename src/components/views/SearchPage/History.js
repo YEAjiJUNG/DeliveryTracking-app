@@ -21,7 +21,7 @@ const History = ({list, props}) => {
             <div className="ListContainer">
                 <div className="keywordContainer">
                     <ul>
-                    {list.map((n, id) => <HistoryItem num={n.num} key={id}/>)}
+                    {list.map((obj, id) => <HistoryItem num={obj.num} key={id}/>)}
                     </ul>
     
                     <button onClick={onClick}>
