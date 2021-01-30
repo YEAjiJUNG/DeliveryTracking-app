@@ -4,7 +4,7 @@ import {
     DELETE_USER
 } from './types';
 
-const addList = num => {
+const addList = (num) => {
     return {
         type: DELIVERY_USER,
         num
@@ -14,6 +14,7 @@ const addList = num => {
 const deleteList = (id) =>{
     return{
         type: DELETE_USER,
+        id: parseInt(id)
     }
 }
 

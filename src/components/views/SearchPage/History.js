@@ -21,7 +21,7 @@ const History = ({list, props}) => {
             <div className="ListContainer">
                 <div className="keywordContainer">
                     <ul>
-                    {list.map((obj, id) => <HistoryItem num={obj.num} key={id}/>)}
+                    {list.map((obj, index) => <HistoryItem num={obj.num} id={obj.id} key={index}/>)}
                     </ul>
     
                     <button onClick={onClick}>
@@ -40,5 +40,7 @@ function mapStateToProps(state, ownProps) {
     // 어떤걸 return하면 그게 component의 props에 추가된다.
     //props에는 react-router 때문에 가져와진 애들이 포함된다.
   }
+
+
 
 export default connect(mapStateToProps, null)(History)
