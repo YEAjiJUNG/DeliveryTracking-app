@@ -4,12 +4,10 @@ import { actionCreators } from '../../../_actions/user_action';
 import { connect } from 'react-redux';
 import HistoryItem from './HistoryItem';
 
-const History = ({list, props}) => {
+const History = ({list, onBtnClick}) => {
     console.log("List : ",list);
     
-    const onClick = () => {
-
-    }
+    
         return(
     
         <div className="HistoryContainer">
@@ -24,7 +22,7 @@ const History = ({list, props}) => {
                     {list.map((obj, index) => <HistoryItem num={obj.num} id={obj.id} key={index}/>)}
                     </ul>
     
-                    <button onClick={onClick}>
+                    <button onClick={onBtnClick}>
                         전체삭제
                     </button>
                 </div>
@@ -41,6 +39,10 @@ function mapStateToProps(state, ownProps) {
     //props에는 react-router 때문에 가져와진 애들이 포함된다.
   }
 
+  function mapDispatchToProps(dispatch){
+    return{
+        onBtnClick : () => dispatch(actionCreators.deleteAll())
+    }
+}
 
-
-export default connect(mapStateToProps, null)(History)
+export default connect(mapStateToProps, mapDispatchToProps)(History)

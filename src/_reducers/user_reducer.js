@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import {
+    DELETEALL_USER,
     DELETE_USER,
     DELIVERY_USER
 } from '../_actions/types';
@@ -10,7 +11,10 @@ const reducer = (state = [], action) => {
             return [{ num: action.num, id: Date.now() }, ...state];
         
         case DELETE_USER:
-            return state.filter(num => num.id!== action.id);
+            return state.filter(num => num.id !== action.id);
+        
+        case DELETEALL_USER:
+            return [];
 
     default:
         return state;

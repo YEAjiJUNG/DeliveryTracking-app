@@ -1,7 +1,8 @@
 import store from '../_reducers/user_reducer';
 import {
     DELIVERY_USER,
-    DELETE_USER
+    DELETE_USER,
+    DELETEALL_USER
 } from './types';
 
 const addList = (num) => {
@@ -18,9 +19,16 @@ const deleteList = (id) =>{
     }
 }
 
+const deleteAll = () => {
+    return{
+        type: DELETEALL_USER
+    }
+}
+
 export const actionCreators = {
     addList,
-    deleteList
+    deleteList,
+    deleteAll
 }
 
 export default store;
