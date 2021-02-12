@@ -24,7 +24,49 @@ var con = mysql.createConnection({
     database: DB_NAME
 });
 
-api_call.getTrackingInfo('1234567890', '04');
+
+// Example url 
+// host : localhost
+// port : 5000
+//
+// http://localhost:5000/api/company_list
+app.get('/api/company_list', (req, res) => {
+	api_call.getDeliveryCompanyList()
+			.then((response) => {
+				console.log('Response from getDeliveryCompanyList');
+				return res.json(response.data);
+			});
+})
+
+// Example url
+// host : localhost
+// port : 5000
+// waybillNumber : 1234567890
+//
+// http://localhost:5000/api/recommended_company/waybillNumber/1234567890
+app.get('/api/recommended_company/waybillNumber/:wbNumber', (req, res) => {
+	api_call.getRecommendDeliveryComapny(req.params.wbNumber)
+			.then((response) => {
+				console.log('Response from getRecommendDeliveryComapny');
+				return res.json(response.data);
+			});
+})
+
+
+// Example url
+// host : localhost
+// port : 5000
+// waybillNumber : 1234567890
+// company_code : 04
+//
+// http://localhost:5000/api/tracking_info/waybillNumber/1234567890/company_code/04
+app.get('/api/tracking_info/waybillNumber/:wbNumber/company_code/:c_code', (req, res) => {
+	api_call.getTrackingInfo(req.params.wbNumber, req.params.c_code)
+			.then((response) => {
+				console.log('Response from getTrackingInfo', response.data);
+				return res.json(response.data);
+			});
+})
 
 con.connect(function(err) {
     if (err) throw err;
