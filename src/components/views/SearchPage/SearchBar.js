@@ -12,7 +12,7 @@ const SearchBar = ({ addList }) => {
 
     const [num, setNum] = useState("");
     const [keyword, setKeyword] = useState("");
-    
+
 
     const onChange = (e) => {
         setNum(e.target.value);
