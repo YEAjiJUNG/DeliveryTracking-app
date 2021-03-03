@@ -9,7 +9,7 @@ const app = express()
 const PORT = 5000;
 
 const DB_ID = "root";
-const DB_PASSWORD = "1234";
+const DB_PASSWORD = "dpwl9924";
 const DB_IP = "127.0.0.1";
 const DB_NAME = "delivery";
 
