@@ -1,7 +1,7 @@
 import React from 'react';
 import './HistoryItem.scss';
 import { connect } from 'react-redux';
-import { actionCreators } from '../../../_actions/user_action';
+import { actionCreators } from '../../../../_actions/user_action';
 
 const HistoryItem = ({ num, btnClick }) => {
   console.log('Item', num);
