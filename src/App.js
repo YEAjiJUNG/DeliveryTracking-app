@@ -1,23 +1,20 @@
 import React from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SearchPage from './components/views/SearchPage/SearchPage';
+import SelectCountry from './components/views/SearchPage/SelectCountry';
 
-function App({dispatch, }) {
+function App({ dispatch }) {
   return (
     <Router>
-      <div className="App"> 
-    <Switch>
-      <Route path="/" component={(SearchPage)} />
-    </Switch>
-    </div>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={SearchPage} />
+          <Route path="/company" component={{ SelectCountry }} />
+        </Switch>
+      </div>
     </Router>
-    
   );
 }
 
@@ -27,7 +24,7 @@ function mapStateToProps(state, ownProps) {
   //props에는 react-router 때문에 가져와진 애들이 포함된다.
 }
 
-function mapDispatchToProps(dispatch){
-  return {dispatch}
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
