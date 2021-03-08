@@ -1,0 +1,13 @@
+.out {
+  display: flex;
+}
+
+.name {
+  align-items: center;
+}
+
+.button {
+  margin: 5px;
+  justify-content: space-between;
+  flex-direction: column;
+}
