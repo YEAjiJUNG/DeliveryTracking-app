@@ -1,23 +1,25 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import History from './History';
 import './SearchPage.scss';
+import SelectCompany from './SelectCompany';
+import Tracking from './Tracking';
 
 const SearchPage = () => {
-
-    return(
-        <div className="OuterContainer">
-            <div className="InnerContainer">
-            <h3>운송장 번호 조회</h3>
-                <SearchBar onAddKeyword/>
-                <div className="History">
-                    <History />
-                </div>
-                
-            </div>
+  return (
+    <div>
+      <div className="OuterContainer">
+        <div className="InnerContainer">
+          <SelectCompany></SelectCompany>
+          <div className="History">
+            <History />
+          </div>
         </div>
-    )
-}
+      </div>
+      <Tracking></Tracking>
+    </div>
+  );
+};
 
-export default withRouter(SearchPage)
+export default withRouter(SearchPage);

@@ -1,28 +1,55 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, withRouter } from 'react-router-dom';
 import './SearchBar.scss';
 import { FiSearch } from 'react-icons/fi';
 import History from './History';
-import { actionCreators } from '../../../_actions/user_action';
+import { actionCreators } from '../../../../_actions/user_action';
+import axios from 'axios';
+import Tracking from './Tracking';
 
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { useEffect } from 'react';
 
-const SearchBar = ({ addList }) => {
+function SearchBar({ addList, companyCode }) {
   const [num, setNum] = useState('');
-  const [keyword, setKeyword] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [waybillNum, setWaybillNum] = useState('');
+  const [deliveryData, setDeliveryData] = useState([]);
+
+  useEffect(() => {
+    getWaybillNum();
+  }, [waybillNum]);
+
+  const getWaybillNum = async () => {
+    const data = await axios.get(
+      '/api/tracking_info/waybillNumber/' +
+        waybillNum +
+        '/company_code/' +
+        companyCode
+    );
+    console.log('Get Data from API ', data);
+    console.log(
+      '/api/tracking_info/waybillNumber/' +
+        waybillNum +
+        '/company_code/' +
+        companyCode
+    );
+    setDeliveryData(data);
+    console.log('dD', deliveryData);
+  };
 
   const onChange = (e) => {
     setNum(e.target.value);
+    console.log('onChange function ', num);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     addList(num);
+    console.log('Waybill Num', num, 'waybill ', waybillNum);
+    setWaybillNum(num);
     setNum('');
   };
+
+  console.log('Before Rendering');
 
   return (
     <div>
@@ -42,9 +69,12 @@ const SearchBar = ({ addList }) => {
           </button>
         </form>
       </div>
+      <div>
+        <Tracking where={deliveryData.data}></Tracking>
+      </div>
     </div>
   );
-};
+}
 
 function mapDispatchToProps(dispatch) {
   return {
