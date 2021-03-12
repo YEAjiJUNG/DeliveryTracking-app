@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
-function Tracking({ data }) {
+const Tracking = ({ fD }) => {
+  console.log(fD.where);
+
   return (
     <div>
       <h2>위치</h2>
-      <div>{}</div>
+      <div>{fD.where}</div>
     </div>
   );
-}
+};
 
 export default withRouter(Tracking);

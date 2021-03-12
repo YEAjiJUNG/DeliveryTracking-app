@@ -12,12 +12,10 @@ const SearchPage = () => {
       <div className="OuterContainer">
         <div className="InnerContainer">
           <SelectCompany></SelectCompany>
-          <div className="History">
-            <History />
-          </div>
+          <div className="History"></div>
         </div>
       </div>
-      <Tracking></Tracking>
+      <div></div>
     </div>
   );
 };

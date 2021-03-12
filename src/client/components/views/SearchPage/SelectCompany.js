@@ -11,8 +11,6 @@ function SelectCompany(props) {
   const [companies, setCompanies] = useState('');
   const [value, setValue] = useState('04');
 
-  const history = useHistory();
-
   useEffect(() => {
     getCompanyList();
   });
@@ -43,8 +41,8 @@ function SelectCompany(props) {
           <div className="outLabel">
             <form onSubmit={onSubmit}>
               <label className="label">
-                Pick your delivery company :
-                <select value={value} onChange={onChange}>
+                pick your delivery company :
+                <select className="select" value={value} onChange={onChange}>
                   {companies.map((company, index) => (
                     <CompanyList
                       key={index}

@@ -18,6 +18,10 @@ function SearchBar({ addList, companyCode }) {
     getWaybillNum();
   }, [waybillNum]);
 
+  useEffect(() => {
+    console.log('dD', deliveryData);
+  }, [deliveryData]);
+
   const getWaybillNum = async () => {
     const data = await axios.get(
       '/api/tracking_info/waybillNumber/' +
@@ -32,8 +36,7 @@ function SearchBar({ addList, companyCode }) {
         '/company_code/' +
         companyCode
     );
-    setDeliveryData(data);
-    console.log('dD', deliveryData);
+    setDeliveryData(data.data);
   };
 
   const onChange = (e) => {
@@ -49,28 +52,43 @@ function SearchBar({ addList, companyCode }) {
     setNum('');
   };
 
-  console.log('Before Rendering');
+  console.log('Before Rendering ', deliveryData);
 
   return (
     <div>
-      <div className="company"></div>
-      <div className="Container">
-        <div></div>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            value={num}
-            className="inputContainer"
-            onChange={onChange}
-            placeholder="운송장 번호 입력"
-          ></input>
-          <button type="submit" className="btn">
-            <FiSearch />
-          </button>
-        </form>
+      <div>
+        <div className="company">
+          <div className="Container">
+            <form onSubmit={onSubmit}>
+              <input
+                type="text"
+                value={num}
+                className="inputContainer"
+                onChange={onChange}
+                placeholder="운송장 번호 입력"
+              ></input>
+              <button type="submit" className="btn">
+                <FiSearch />
+              </button>
+            </form>
+          </div>
+          <div>
+            <History></History>
+          </div>
+        </div>
       </div>
       <div>
-        <Tracking where={deliveryData.data}></Tracking>
+        {deliveryData.hasOwnProperty('status') ? (
+          console.log('유효하지 않은 운송장 번호입니다.')
+        ) : (
+          <div>
+            {deliveryData.firstDetail ? (
+              <Tracking fD={deliveryData.firstDetail} />
+            ) : (
+              <div>dd</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
