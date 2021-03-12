@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SearchPage from './client/components/views/SearchPage/SearchPage';
-import SelectCountry from './client/components/views/SearchPage/SelectCountry';
+import SelectCompany from './client/components/views/SearchPage/SelectCompany';
 
 function App({ dispatch }) {
   return (
@@ -11,7 +11,6 @@ function App({ dispatch }) {
       <div className="App">
         <Switch>
           <Route exact path="/" component={SearchPage} />
-          <Route path="/company" component={SelectCountry} />
         </Switch>
       </div>
     </Router>

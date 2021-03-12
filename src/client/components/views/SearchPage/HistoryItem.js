@@ -17,7 +17,7 @@ const HistoryItem = ({ num, btnClick }) => {
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
-  console.log('ownProps', ownProps);
+  console.log('item_ownProps', ownProps);
   return {
     btnClick: () => dispatch(actionCreators.deleteList(ownProps.id)),
   };
